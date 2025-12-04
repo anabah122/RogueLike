@@ -3,35 +3,34 @@
 _G.global = {
     players = {
         --[[ [ guid ] {
-            list_ids        >> effects={}, 
-            lambdaList      >> events={}
-            lambdaList      >> eventsToRemove={}
+            [ eventId ] 
+                = eventObj {
+                    start function 
+                    stop function 
+                    startTrig
+                    stopTrig
+                    id , desc , icon  
+                }
         }]]
+    }
+    queue = {
+        --[[
+        [ guid ] {
+            onCombatStart ={}, 
+            onCombatEnd={}, 
+            onLoggin={}, 
+            onSpellCast={}, 
+            onKillCreature={}, 
+            onQuestComplete={}, 
+        }
+        ]]
     }
 }
 
-local effect = require'effect'
-local msgObj = require'msgObj'
 
 
-RegisterPlayerEvent(19, function(event, player, msg, Type, lang, receiver)
-    if receiver==player then
-
-        --[[
-        effect:new( 9331 , 100 ):preform( player )
-        
-        msgObj:new()
-            :delAll()
-            :add( {id=73828,icon='ability_druid_mastershapeshifter',desc='тест русский|фыв'} )
-            :pushMessages( player )
-        ]]
-
-        msgObj:new()
-            :del( 73828 )
-            :pushMessages( player )
-
-    end
-end)
+local effect = require'class.effect'
+local msgObj = require'class.msgObj'
 
 
 
