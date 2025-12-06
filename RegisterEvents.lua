@@ -26,6 +26,8 @@ end)
 -- test block 
 
 
+
+
 local keys = { 'onCombatStart' , 'onCombatEnd' , 'onLoggin', 'onSpellCast', 'onKillCreature', 'onQuestComplete' }
 
 local function QueueTrigger( trigName, args )
