@@ -2,20 +2,19 @@
 
 
 RegisterPlayerEvent(19, function(event, player, msg, Type, lang, receiver)
-    if receiver==player and msg=='test' then
-        
-        print( 'adding test mod!' )
-        
-        eventsList['rage']:register( player )
-
+    if receiver==player then
+        local s,e = pcall( 
+            function()
+                eventsList[ msg ]:register( player )
+            end
+        )
+        print( e or 'add test ev : '..msg )
     end
 end)
 
 
 
 
-
-local keys = { 'onCombatStart' , 'onCombatEnd' , 'onLoggin', 'onSpellCast', 'onKillCreature', 'onQuestComplete' }
 
 local function QueueTrigger( trigName, args )
 
@@ -32,7 +31,6 @@ local function QueueTrigger( trigName, args )
     end
 
 end
-
 
 
 -- PLAYER MUST BE FIRST IN ARGS TBL
@@ -71,4 +69,16 @@ end)
 RegisterPlayerEvent( 54 , 
 function(event, player, quest)
     QueueTrigger( 'onQuestComplete', { player, quest } )
+end)
+
+-- PLAYER_EVENT_ON_HEAL
+RegisterPlayerEvent( 65 , 
+function(event, player, quest)
+    QueueTrigger( 'onPlayerHeal', { player, quest } )
+end)
+
+-- PLAYER_EVENT_ON_DAMAGE
+RegisterPlayerEvent( 66 , 
+function(event, player, quest)
+    QueueTrigger( 'onPlayerDamage', { player, quest } )
 end)

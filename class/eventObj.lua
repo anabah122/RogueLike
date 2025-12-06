@@ -11,7 +11,7 @@ eventObj {
     start --function 
     stop  --function 
     triggers = { -- bool 
-        onCombatStart , onCombatEnd , onLoggin, onSpellCast, onKillCreature, onQuestComplete, 
+        onCombatStart , onCombatEnd , onLoggin, onSpellCast, onKillCreature, onQuestComplete, onPlayerHeal, onPlayerDamage
     }
     stopTrig
     id , desc , icon  
