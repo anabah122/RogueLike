@@ -1,4 +1,5 @@
 
+local ser = require'libs.serpRG'
 
 _G.global = {
     players = {
@@ -16,12 +17,33 @@ _G.global = {
 }
 
 
--- loading order
-local loader = require'DATA.loader'
-loader.load()
 
-local effect = require'class.effect'
+
 local msgObj = require'class.msgObj'
 
+RegisterPlayerEvent( 3, function(event, player) 
+
+    if not global.players[ player:guid() ] then return false end 
+
+    local pObj = global.players[ player:guid() ]
+
+    local msg = msgObj:new():delAll()
+    for _,ev in pairs( pObj ) do 
+        msg:add(ev)
+    end
+
+    msg:pushMessages( player ) 
+
+end)
+
+   
+
+
+
+-- loading order
+_G.eventsList = require'DATA.eventsList'
+
+local loader = require'DATA.loader'
+global.players = loader.load() or {}
 
 

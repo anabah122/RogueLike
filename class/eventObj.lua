@@ -1,4 +1,7 @@
 
+local msgObj = require'class.msgObj'
+
+
 local eventObj = {}
 eventObj.__index = eventObj
 
@@ -22,8 +25,16 @@ end
 
 function eventObj:register( target )
 
-    local guid = target:GetGUID()
-    if not global.players[ guid ] then global.players[ guid ]={} end
+    local guid
+    if type( target )=='string' then 
+        guid = target
+    else
+        guid = tostring( target:GetGUID() )
+    end
+    
+    if not global.players[ guid ] then
+        global.players[ guid ]={} 
+    end
 
     local evList = global.players[ guid ]
     if evList[self.id] then 
@@ -31,8 +42,13 @@ function eventObj:register( target )
         return self
     end
 
+    if target:GetGUID() then 
+        msgObj:new():add(self):pushMessages( target )
+    end
+
     evList[self.id] = self 
     return self 
+
 end
 
 

@@ -1,29 +1,16 @@
 
 
--- test block 
-local eventObj = require'class.eventObj'
 
 RegisterPlayerEvent(19, function(event, player, msg, Type, lang, receiver)
     if receiver==player and msg=='test' then
         
-        eventObj:new({
-            id=16789 , 
-            desc='Гнев|при входе в бой увеличивает наносимый физический урон и скорость атаки на 50|на 15 сек' , 
-            icon='spell_shadow_unholyfrenzy',
-            
-            func = function( self, eventName, args ) 
-                local player, enemy = unpack( args )
-                player:AddAura( self.id , player )
-            end ,
-            
-            triggers = { -- bool 
-                onCombatStart=true
-            }
-        }):register( player )
+        print( 'adding test mod!' )
+        
+        eventsList['rage']:register( player )
 
     end
 end)
--- test block 
+
 
 
 
