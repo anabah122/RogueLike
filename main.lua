@@ -17,6 +17,8 @@ _G.global = {
 
 
 -- loading order
+local loader = require'DATA.loader'
+loader.load()
 
 local effect = require'class.effect'
 local msgObj = require'class.msgObj'
