@@ -14,7 +14,7 @@ eventObj {
 }
 ]]
 
-
+-- on combat and login
 eventsList['rage'] = 
     eventObj:new({
         id=16789 , 
@@ -24,8 +24,7 @@ eventsList['rage'] =
         func = function( self, eventName, args ) 
 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
                 player:AddAura( self.id , p )
@@ -48,8 +47,7 @@ eventsList['herb'] =
         func = function( self, eventName, args ) 
 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
                 player:AddAura( self.id , p )
@@ -87,8 +85,7 @@ eventsList['tunderShield'] =
         
         func = function( self, eventName, args ) 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
                 player:CastSpell( p, self.id , true )
@@ -109,8 +106,7 @@ eventsList['shadowShield'] =
         
         func = function( self, eventName, args ) 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
                 player:AddAura( self.id , p )
@@ -131,11 +127,10 @@ eventsList['wildHeal'] =
         
         func = function( self, eventName, args ) 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
-                if math.random(10)<2 then 
+                if math.random(10)<=2 then 
                     player:AddAura( self.id , p )
                 end
             end
@@ -154,11 +149,10 @@ eventsList['manaTitan'] =
         
         func = function( self, eventName, args ) 
             local player, enemy = unpack( args )
-            local group = player:GetGroup()
-            group = group or { player }
+            local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
-                if math.random(100)<2 and p:HasCasterSpec() then 
+                if math.random(100)<=2 and p:HasCasterSpec() then 
                     player:AddAura( self.id , p )
                 end
             end
@@ -170,9 +164,93 @@ eventsList['manaTitan'] =
     })
 
     
+eventsList['admiral'] = 
+    eventObj:new({
+        id=12022 , 
+        desc='Автоматическая адмиральская шляпа|повышает выносливость участников группы, находящихся в радиусе 30 м на 10|обновляется при входе в бой' , 
+        icon='inv_helmet_66',
+        
+        func = function( self, eventName, args ) 
+            local player, enemy = unpack( args )
+            player:AddAura( self.id , player )
+        end ,
+        
+        triggers = { -- bool 
+            onLoggin=true, onCombatStart=true
+        }
+    })
+
+
+eventsList['moonLuck'] = 
+    eventObj:new({
+        id=26522 , 
+        desc='Лунная удача|повышает здоровье на 250|обновляется при входе в бой' , 
+        icon='achievement_halloween_spider_01',
+        
+        func = function( self, eventName, args ) 
+            local player, enemy = unpack( args )
+            local group = player:GroupTbl()
+
+            for _, p in ipairs( group ) do 
+                player:AddAura( self.id , p )
+            end
+        end ,
+        
+        triggers = { -- bool 
+            onLoggin=true, onCombatStart=true
+        }
+    })
+
+eventsList['criticalstrike'] = 
+    eventObj:new({
+        id=13847 , 
+        desc='Безрассудство|при входе в бой, с шансом 25%, на 15 секунд все атаки становятся критическими, броня ослаблена на 35%' , 
+        icon='ability_criticalstrike',
+        
+        func = function( self, eventName, args ) 
+            local player, enemy = unpack( args )
+            local group = player:GroupTbl()
+
+            for _, p in ipairs( group ) do 
+                if math.random(100)<=25 then 
+                    player:AddAura( self.id , p )
+                end
+            end
+        end ,
+        
+        triggers = { -- bool 
+            onCombatStart=true
+        }
+    })
+
+
+eventsList['diplomacy'] = 
+    eventObj:new({
+        id=38916 , 
+        desc='Дипломатическая неприкосновенность|при получении урона шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
+        icon='inv_scroll_01',
+        
+        func = function( self, eventName, args ) 
+            local player, enemy = unpack( args )
+            local group = player:GroupTbl()
+
+            for _, p in ipairs( group ) do 
+                if  p:GetHealthPct()<20 then 
+                    player:AddAura( self.id , p )
+                    break
+                end
+            end
+        end ,
+        
+        triggers = { -- bool 
+            onCombatStart=true
+        }
+    })
+
 
 
 --
+
 
 for k,ev in pairs( eventsList ) do 
     ev.listkey = k
