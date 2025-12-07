@@ -7,12 +7,14 @@
 
 return require'class.eventObj':new({
     id=16075 , 
-    desc='Бросок топора|при входе в бой кидает тяжелый топор в произвольного противника, нанося 1750 урона и оглушая его на 2 сек' , 
+    desc='Бросок топора|при входе в бой с шансом 20% кидает тяжелый топор в произвольного противника, нанося 1750 урона и оглушая его на 2 сек' , 
     icon='inv_axe_08',
     
     func = function( self, eventName, args ) 
         local player, enemy = unpack( args )
-        player:CastSpell( enemy, self.id , true )
+        if math.chance( 20 ) then
+            player:CastSpell( enemy, self.id , true )
+        end
     end ,
     
     triggers = { -- bool 

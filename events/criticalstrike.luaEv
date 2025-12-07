@@ -13,7 +13,7 @@ return require'class.eventObj':new({
         func = function( self, eventName, args ) 
             local player = unpack( args )
 
-            if math.random(100)<=25 then 
+            if math.chance( 25 ) then 
                 player:AddAura( self.id , player )
             end 
         end ,
