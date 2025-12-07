@@ -12,7 +12,7 @@ function loader.save ()
     for guid,p in pairs( global.players ) do
         toSave[ guid ] = {}
         for _, ev in pairs( p ) do 
-            table.insert( toSave[ guid ] , ev.listkey )
+            table.insert( toSave[ guid ] , ev.name )
         end
     end
 

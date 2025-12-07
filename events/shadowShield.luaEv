@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+return require'class.eventObj':new({
+    id=22417 , 
+    desc='Щит Тени|при входе в бой на 30 сек вы получаете щит который поглощает до 400 урона' , 
+    icon='spell_shadow_antishadow',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
+        player:AddAura( self.id , player )
+    end ,
+    
+    triggers = { -- bool 
+        onCombatStart=true
+    }
+})

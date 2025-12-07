@@ -1,0 +1,24 @@
+
+
+
+
+
+
+
+return require'class.eventObj':new({
+    name = 'rage',
+    id=16789 , 
+    desc='Гнев|при входе в бой увеличивает наносимый физический урон и скорость атаки на 50|на 15 сек' , 
+    icon='spell_shadow_unholyfrenzy',
+    
+    func = function( self, eventName, args ) 
+
+        local player = unpack( args )
+        player:AddAura( self.id , player )
+
+    end ,
+    
+    triggers = { -- bool 
+        onCombatStart=true
+    }
+})

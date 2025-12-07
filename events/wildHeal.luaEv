@@ -1,0 +1,23 @@
+
+
+
+
+
+
+
+return require'class.eventObj':new({
+    id=9616 , 
+    desc='Дикое востановление|при победой над противником c 20% шансом восполняет члену группы 23-37 здоровья раз в 2 сек. в течение 20 сек' , 
+    icon='spell_nature_rejuvenation',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
+        if math.random(10)<=2 then 
+            player:AddAura( self.id , player )
+        end
+    end ,
+    
+    triggers = { -- bool 
+        onKillCreature=true
+    }
+})

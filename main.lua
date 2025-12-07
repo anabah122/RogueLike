@@ -1,5 +1,7 @@
 
-local ser = require'libs.serpRG'
+require'libs.printUtil'
+
+
 
 _G.global = {
     players = {
@@ -41,9 +43,9 @@ end)
 
 
 -- loading order
-_G.eventsList = require'DATA.eventsList'
+_G.eventsList = require'DATA.eventLoader'
 
-local loader = require'DATA.loader'
+local loader = require'DATA.dataLoader'
 global.players = loader.load() or {}
 
 

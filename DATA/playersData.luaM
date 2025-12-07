@@ -1,13 +1,1 @@
-{
-  ["1344"] = {
-    "manaTitan"
-  },
-  ["1345"] = {
-    "moonLuck",
-    "admiral",
-    "criticalstrike"
-  },
-  ["1346"] = {
-    "diplomacy"
-  }
-}
+{}
