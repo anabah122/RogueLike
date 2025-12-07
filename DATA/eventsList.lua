@@ -227,7 +227,7 @@ eventsList['criticalstrike'] =
 eventsList['diplomacy'] = 
     eventObj:new({
         id=38916 , 
-        desc='Дипломатическая неприкосновенность|при получении урона шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
+        desc='Дипломатическая неприкосновенность|при действиях с шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
         icon='inv_scroll_01',
         
         func = function( self, eventName, args ) 
@@ -235,7 +235,7 @@ eventsList['diplomacy'] =
             local group = player:GroupTbl()
 
             for _, p in ipairs( group ) do 
-                if  p:GetHealthPct()<20 then 
+                if math.round(100)<=20 and p:GetHealthPct()<20 then 
                     player:AddAura( self.id , p )
                     break
                 end
@@ -243,7 +243,7 @@ eventsList['diplomacy'] =
         end ,
         
         triggers = { -- bool 
-            onCombatStart=true
+            onSpellCast=true
         }
     })
 
