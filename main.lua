@@ -43,7 +43,6 @@ end)
 
 
 -- loading order
-_G.eventsList = require'DATA.eventLoader'
 
 local loader = require'DATA.dataLoader'
 global.players = loader.load() or {}
