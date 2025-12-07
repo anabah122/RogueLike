@@ -1,0 +1,22 @@
+
+
+
+
+
+
+
+
+return require'class.eventObj':new({
+        id=12022 , 
+        desc='Автоматическая адмиральская шляпа|повышает выносливость участников группы, находящихся в радиусе 30 м на 10|обновляется при входе в бой' , 
+        icon='inv_helmet_66',
+        
+        func = function( self, eventName, args ) 
+            local player = unpack( args )
+            player:AddAura( self.id , player )
+        end ,
+        
+        triggers = { -- bool 
+            onLoggin=true, onCombatStart=true
+        }
+    })
