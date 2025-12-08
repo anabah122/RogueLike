@@ -1,10 +1,10 @@
 
 local npcId = 3087
 local name ='Дипломатическая неприкосновенность'
-regGossipEv( npcId , name )
 
 
-return require'class.eventObj':new({
+
+local evObj = require'class.eventObj':new({
     id=38916 ,
     name = name, 
     desc='при получении урона с шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
@@ -21,3 +21,6 @@ return require'class.eventObj':new({
         onPlayerDamage=true
     }
 })
+
+regGossipEv( npcId , evObj )
+return evObj

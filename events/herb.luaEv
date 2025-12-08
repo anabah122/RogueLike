@@ -1,10 +1,10 @@
 
 local npcId = 3087
 local name ='Целебный корень'
-regGossipEv( npcId , name )
 
 
-return require'class.eventObj':new({
+
+local evObj = require'class.eventObj':new({
     id=21955 , 
     name=name,
     desc='при входе в бой востанавилвает 600 здоровья и маны в течение 10 сек' , 
@@ -21,3 +21,6 @@ return require'class.eventObj':new({
         onCombatStart=true
     }
 })
+
+regGossipEv( npcId , evObj )
+return evObj

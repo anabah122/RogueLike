@@ -1,10 +1,10 @@
 
 local npcId = 3087
 local name ='Гнев'
-regGossipEv( npcId , name )
 
 
-return require'class.eventObj':new({
+
+local evObj = require'class.eventObj':new({
     id=16789 , 
     name=name,
     desc='при входе в бой увеличивает наносимый физический урон и скорость атаки на 50|на 15 сек' , 
@@ -21,3 +21,6 @@ return require'class.eventObj':new({
         onCombatStart=true
     }
 })
+
+regGossipEv( npcId , evObj )
+return evObj

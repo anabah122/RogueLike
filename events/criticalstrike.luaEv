@@ -1,10 +1,10 @@
 
 local npcId = 3087
 local name ='Безрассудство'
-regGossipEv( npcId , name )
 
 
-return require'class.eventObj':new({
+
+local evObj = require'class.eventObj':new({
     id=13847 , 
     name = name,
     desc='при входе в бой, с шансом 25%, на 15 секунд все атаки становятся критическими, броня ослаблена на 35%' , 
@@ -22,3 +22,6 @@ return require'class.eventObj':new({
         onCombatStart=true
     }
 })
+
+regGossipEv( npcId , evObj )
+return evObj

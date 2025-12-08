@@ -1,10 +1,10 @@
 
 local npcId = 3087
 local name ='Титан магии'
-regGossipEv( npcId , name )
 
 
-return require'class.eventObj':new({
+
+local evObj = require'class.eventObj':new({
     id=50983 , 
     name=name,
     desc='при исцелении и нанесения урона магическими умениями с шансом 2% члены группы могут получить эффект|восполнение 10% маны в секунду в течение 10 сек, получаемый урон повышается на 400%.' , 
@@ -21,3 +21,6 @@ return require'class.eventObj':new({
         onSpellCast=true
     }
 })
+
+regGossipEv( npcId , evObj )
+return evObj
