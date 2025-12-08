@@ -11,7 +11,7 @@ end
 -- add add msg to queue
 function msgObj:add( aura ) -- aura obj
     table.insert( self, 
-        "{ type='ADD', id="..aura.id..", icon='interface/icons/"..aura.icon.."', description='"..aura.desc.."' }" 
+        "{ type='ADD', id="..aura.id..", icon='interface/icons/"..aura.icon.."', description='"..aura.name..'|'..aura.desc.."' }" 
     )
     return self
 end

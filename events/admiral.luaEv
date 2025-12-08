@@ -1,9 +1,13 @@
 
+local npcId = 3087
+local name ='Автоматическая адмиральская шляпа'
+regGossipEv( npcId , name )
 
-local eventObj = 
-require'class.eventObj':new({
+
+return require'class.eventObj':new({
     id=12022 , 
-    desc='Автоматическая адмиральская шляпа|повышает выносливость участников группы, находящихся в радиусе 30 м на 10|обновляется при входе в бой' , 
+    name = name,
+    desc='повышает выносливость участников группы, находящихся в радиусе 30 м на 10|обновляется при входе в бой' , 
     icon='inv_helmet_66',
     
     func = function( self, eventName, args ) 
@@ -16,19 +20,3 @@ require'class.eventObj':new({
     }
 })
 
-
-
-RegisterCreatureGossipEvent(3087, 1, function(event, player, creature)
-    player:GossipMenuAddItem(0, "Автоматическая адмиральская шляпа", 0, 128)
-    player:GossipSendMenu(1, creature)
-end)
-
-RegisterCreatureGossipEvent(3087, 2, function(event, player, creature, sender, intid, code, menu_id)
-    if intid == 128 then
-        player:SendBroadcastMessage("Вы получили улучшение Автоматическая адмиральская шляпа")
-        eventObj:register( player )
-        player:GossipComplete()
-    end
-end)
-
-return eventObj

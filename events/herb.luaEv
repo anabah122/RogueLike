@@ -1,13 +1,13 @@
 
-
-
-
-
+local npcId = 3087
+local name ='Целебный корень'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
     id=21955 , 
-    desc='Целебный корень|при входе в бой востанавилвает 600 здоровья и маны в течение 10 сек' , 
+    name=name,
+    desc='при входе в бой востанавилвает 600 здоровья и маны в течение 10 сек' , 
     icon='inv_misc_herb_07',
     
     func = function( self, eventName, args ) 

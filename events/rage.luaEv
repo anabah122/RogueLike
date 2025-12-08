@@ -1,13 +1,13 @@
 
-
-
-
-
+local npcId = 3087
+local name ='Гнев'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
     id=16789 , 
-    desc='Гнев|при входе в бой увеличивает наносимый физический урон и скорость атаки на 50|на 15 сек' , 
+    name=name,
+    desc='при входе в бой увеличивает наносимый физический урон и скорость атаки на 50|на 15 сек' , 
     icon='spell_shadow_unholyfrenzy',
     
     func = function( self, eventName, args ) 

@@ -15,7 +15,6 @@ end)
 
 
 
-
 local function QueueTrigger( trigName, args )
 
     local guid = args[1]:guid()

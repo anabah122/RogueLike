@@ -1,24 +1,24 @@
 
-
-
-
-
+local npcId = 3087
+local name ='Безрассудство'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
-        id=13847 , 
-        desc='Безрассудство|при входе в бой, с шансом 25%, на 15 секунд все атаки становятся критическими, броня ослаблена на 35%' , 
-        icon='ability_criticalstrike',
-        
-        func = function( self, eventName, args ) 
-            local player = unpack( args )
+    id=13847 , 
+    name = name,
+    desc='при входе в бой, с шансом 25%, на 15 секунд все атаки становятся критическими, броня ослаблена на 35%' , 
+    icon='ability_criticalstrike',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
 
-            if math.chance( 25 ) then 
-                player:AddAura( self.id , player )
-            end 
-        end ,
-        
-        triggers = { -- bool 
-            onCombatStart=true
-        }
-    })
+        if math.chance( 25 ) then 
+            player:AddAura( self.id , player )
+        end 
+    end ,
+    
+    triggers = { -- bool 
+        onCombatStart=true
+    }
+})

@@ -1,23 +1,21 @@
 
-
-
-
-
-
-
+local npcId = 3087
+local name ='Лунная удача'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
-        id=26522 , 
-        desc='Лунная удача|повышает здоровье на 250|обновляется при входе в бой' , 
-        icon='achievement_halloween_spider_01',
-        
-        func = function( self, eventName, args ) 
-            local player = unpack( args )
-            player:AddAura( self.id , player )
-        end ,
-        
-        triggers = { -- bool 
-            onLoggin=true, onCombatStart=true
-        }
-    })
+    id=26522 , 
+    name=name,
+    desc='повышает здоровье на 250|обновляется при входе в бой' , 
+    icon='achievement_halloween_spider_01',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
+        player:AddAura( self.id , player )
+    end ,
+    
+    triggers = { -- bool 
+        onLoggin=true, onCombatStart=true
+    }
+})

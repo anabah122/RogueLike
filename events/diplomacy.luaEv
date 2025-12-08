@@ -1,24 +1,23 @@
 
-
-
-
-
-
+local npcId = 3087
+local name ='Дипломатическая неприкосновенность'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
-        id=38916 , 
-        desc='Дипломатическая неприкосновенность|при получении урона с шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
-        icon='inv_scroll_01',
-        
-        func = function( self, eventName, args ) 
-            local player = unpack( args )
-            if math.chance( 20 ) and p:GetHealthPct()<20 then 
-                player:AddAura( self.id , player )
-            end
-        end ,
-        
-        triggers = { -- bool 
-            onPlayerDamage=true
-        }
-    })
+    id=38916 ,
+    name = name, 
+    desc='при получении урона с шансом 20% накладывает на одного члена группы неуязвимость на на 6 секунд' , 
+    icon='inv_scroll_01',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
+        if math.chance( 20 ) and p:GetHealthPct()<20 then 
+            player:AddAura( self.id , player )
+        end
+    end ,
+    
+    triggers = { -- bool 
+        onPlayerDamage=true
+    }
+})

@@ -18,9 +18,12 @@ eventObj {
 }
 ]]
 
+
+
 function eventObj:new( args )
     return setmetatable( args , eventObj )
 end
+
 
 
 function eventObj:register( target )

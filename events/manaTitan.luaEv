@@ -1,23 +1,23 @@
 
-
-
-
-
+local npcId = 3087
+local name ='Титан магии'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
-        id=50983 , 
-        desc='Титан магии|при исцелении и нанесения урона магическими умениями с шансом 2% члены группы могут получить эффект|восполнение 10% маны в секунду в течение 10 сек, получаемый урон повышается на 400%.' , 
-        icon='ability_mage_shattershield',
-        
-        func = function( self, eventName, args ) 
-            local player = unpack( args )
-            if math.chance( 2 )  then 
-                player:AddAura( self.id , player )
-            end
-        end ,
-        
-        triggers = { -- bool 
-            onSpellCast=true
-        }
-    })
+    id=50983 , 
+    name=name,
+    desc='при исцелении и нанесения урона магическими умениями с шансом 2% члены группы могут получить эффект|восполнение 10% маны в секунду в течение 10 сек, получаемый урон повышается на 400%.' , 
+    icon='ability_mage_shattershield',
+    
+    func = function( self, eventName, args ) 
+        local player = unpack( args )
+        if math.chance( 2 )  then 
+            player:AddAura( self.id , player )
+        end
+    end ,
+    
+    triggers = { -- bool 
+        onSpellCast=true
+    }
+})

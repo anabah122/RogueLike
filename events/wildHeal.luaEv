@@ -1,13 +1,13 @@
 
-
-
-
-
+local npcId = 3087
+local name ='Дикое востановление'
+regGossipEv( npcId , name )
 
 
 return require'class.eventObj':new({
     id=9616 , 
-    desc='Дикое востановление|при победой над противником c 20% шансом восполняет члену группы 23-37 здоровья раз в 2 сек. в течение 20 сек' , 
+    name=name,
+    desc='при победой над противником c 20% шансом восполняет члену группы 23-37 здоровья раз в 2 сек. в течение 20 сек' , 
     icon='spell_nature_rejuvenation',
     
     func = function( self, eventName, args ) 
